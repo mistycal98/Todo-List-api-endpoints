@@ -63,6 +63,14 @@ Download all packages and dependencies
 ```
 $ npm install
 ```
+Configure config.env file
+```
+/* create a file config.env in the root folder
+include variables */
+
+PORT = '<on which port you want to start your server/>'
+DB_CONNECTION = '<your mongoDB server base-url running on your local machine or cloud Atlas/>'
+```
 Run project on your local Machine
 ```
 $ npm start
