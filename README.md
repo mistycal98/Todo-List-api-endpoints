@@ -57,7 +57,7 @@ DELETE - Delete a task
 
 # Clone and Runnig the Project
 ```
-$ git clone https://github.com/ialtafshaikh/todo-app-backend.git
+$ git clone https://github.com/mistycal98/Todo-List-api-endpoints.git
 ```
 Download all packages and dependencies
 ```
