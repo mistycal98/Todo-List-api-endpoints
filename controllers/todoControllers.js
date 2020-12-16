@@ -4,9 +4,12 @@ const Todo = require("../models/Todo");
 const getallTasks = async (req, res) => {
   try {
     let data = await Todo.find();
-    res.json(data);
+    res.status(200).json(data);
   } catch (error) {
-    res.json({ message: error });
+    res.status(404).json({
+      status: "Unsucessfull",
+      message: error
+    });
   }
 };
 
@@ -16,9 +19,13 @@ const createTask = async (req, res) => {
     task: req.body.task,
   });
   try {
-    let saveTask = await data.save(res.json(data));
+    let saveTask = await data.save();
+    res.status(200).json(saveTask);
   } catch (error) {
-    res.json({ message: error });
+    res.status(404).json({
+      status: "Unsucessfull",
+      message: error
+    });
   }
 };
 
@@ -26,9 +33,12 @@ const createTask = async (req, res) => {
 const getTask = async (req, res) => {
   try {
     const data = await Todo.findById(req.params.taskId);
-    res.json(data);
+    res.status(200).json(data);
   } catch (error) {
-    res.json({ message: error });
+    res.status(404).json({
+      status: "Unsucessfull",
+      message: error
+    });
   }
 };
 
@@ -40,9 +50,12 @@ const updateTask = async (req, res) => {
       { $set: { task: req.body.task, completed: req.body.completed } }
       //   { $set: { completed: req.body.completed } }
     );
-    res.json(data);
+    res.status(200).json(data);
   } catch (error) {
-    res.json({ message: error });
+    res.status(404).json({
+      status: "Unsucessfull",
+      message: error
+    });
   }
 };
 
@@ -51,10 +64,24 @@ const deleteTask = async (req, res) => {
   try {
     // const data = await Todo.findByIdAndDelete(req.params.id);  // Alternate
     const data = await Todo.deleteOne({ _id: req.params.taskId });
-    res.send({ message: `Delete task ${req.params.taskId}` });
+    res.status(200).send({ message: `Delete task ${req.params.taskId}` });
   } catch (error) {
-    res.json({ message: error });
+    res.status(404).json({
+      status: "Unsucessfull",
+      message: error
+    });
   }
 };
 
-module.exports = { getallTasks, createTask, getTask, updateTask, deleteTask };
+const delelteAllTasks = async (req, res) => {
+  try {
+    const data = await Todo.remove({});
+    res.status(200).json({ message: "Deleted all Tasks" });
+  } catch (error) {
+    res.status(404).json({
+      status: "Unsucessfull",
+      message: error
+    });
+  }
+}
+module.exports = { getallTasks, createTask, getTask, updateTask, deleteTask, delelteAllTasks };

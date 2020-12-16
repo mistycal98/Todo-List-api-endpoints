@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const uniqid = require("uniqid");
 
 const todoSchema = new mongoose.Schema({
+  taskid: {
+    type: String,
+    default: uniqid()
+  },
   task: {
     type: String,
     required: true,
@@ -14,6 +18,8 @@ const todoSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-});
+}, { timestamps: true });
 
-module.exports = mongoose.model("Todo", todoSchema);
+const Todo = mongoose.model('Todo', todoSchema);
+
+module.exports = Todo;

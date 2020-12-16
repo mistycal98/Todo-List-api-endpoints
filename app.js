@@ -15,22 +15,38 @@ const todoRoutes = require("./routes/todoRoute");
 
 // Routes
 app.use("/todos", todoRoutes);
+
+//Default route (Home Page)
 app.get("/", (req, res) => {
   res.send("we are on home page");
 });
 
+//If Route not found
+app.get('*',(req,res) => {
+  res.send('<h1>404 Page not Found</h1>');
+});
+
 // DB connection
-mongoose.connect(
-  process.env.DB_CONNECTION,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  () => {
-    console.log("Connected to DB!");
-  }
-);
+try {
+  mongoose.connect(
+    process.env.DB_CONNECTION,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+    () => {
+      console.log("Connected to DB!");
+    }
+  );
+} catch (error) {
+  console.log('Error Occured', error);
+}
 
 app.listen(process.env.PORT, () => {
   console.log(`Server started on http://localhost:${process.env.PORT}`);
 });
+
+
+
+
+
