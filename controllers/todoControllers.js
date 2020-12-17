@@ -48,7 +48,6 @@ const updateTask = async (req, res) => {
     const data = await Todo.updateOne(
       { _id: req.params.taskid },
       { $set: { task: req.body.task, completed: req.body.completed } }
-      //   { $set: { completed: req.body.completed } }
     );
     res.status(200).json(data);
   } catch (error) {

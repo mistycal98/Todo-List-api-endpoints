@@ -79,3 +79,6 @@ $ npm start
 ## Live Demo
 
 [Heroku](https://todo-list-api-endpoints.herokuapp.com/)
+
+## Try it out with Postman
+[Todo-list-backend](https://www.getpostman.com/collections/edca98ecd38b0ee668b2)
