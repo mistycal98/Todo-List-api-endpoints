@@ -1,4 +1,5 @@
 const Todo = require("../models/Todo");
+const uniqid = require("uniqid");
 
 // get all tasks from db
 const getallTasks = async (req, res) => {
@@ -8,7 +9,7 @@ const getallTasks = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       status: "Unsucessfull",
-      message: error
+      message: error,
     });
   }
 };
@@ -16,6 +17,7 @@ const getallTasks = async (req, res) => {
 // create task in db and save
 const createTask = async (req, res) => {
   const data = new Todo({
+    taskid: uniqid(),
     task: req.body.task,
   });
   try {
@@ -24,7 +26,7 @@ const createTask = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       status: "Unsucessfull",
-      message: error
+      message: error,
     });
   }
 };
@@ -37,7 +39,7 @@ const getTask = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       status: "Unsucessfull",
-      message: error
+      message: error,
     });
   }
 };
@@ -53,7 +55,7 @@ const updateTask = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       status: "Unsucessfull",
-      message: error
+      message: error,
     });
   }
 };
@@ -67,7 +69,7 @@ const deleteTask = async (req, res) => {
   } catch (error) {
     res.status(404).json({
       status: "Unsucessfull",
-      message: error
+      message: error,
     });
   }
 };

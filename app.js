@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 // Config file import path
 dotenv.config({ path: "./config.env" });
@@ -9,6 +10,7 @@ dotenv.config({ path: "./config.env" });
 // Create Server
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Import Routes
 const todoRoutes = require("./routes/todoRoute");
@@ -22,8 +24,8 @@ app.get("/", (req, res) => {
 });
 
 //If Route not found
-app.get('*',(req,res) => {
-  res.send('<h1>404 Page not Found</h1>');
+app.get("*", (req, res) => {
+  res.send("<h1>404 Page not Found</h1>");
 });
 
 // DB connection
@@ -39,14 +41,9 @@ try {
     }
   );
 } catch (error) {
-  console.log('Error Occured', error);
+  console.log("Error Occured", error);
 }
 
 app.listen(process.env.PORT, () => {
   console.log(`Server started on http://localhost:${process.env.PORT}`);
 });
-
-
-
-
-
