@@ -2,6 +2,10 @@ node_modules
 package-lock.json
 test.js
 config.env
+<<<<<<< HEAD
 yarn.lock
 .DS_Store
 .vscode
+=======
+yarn.lock
+>>>>>>> 2013dfe12031baf4b3d974975813c9aaa0a615a9

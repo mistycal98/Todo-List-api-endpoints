@@ -11,6 +11,7 @@ dotenv.config({ path: "./config.env" });
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 // Import Routes
 const todoRoutes = require("./routes/todoRoute");
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
 
 //If Route not found
 app.get("*", (req, res) => {
-	res.send("<h1>404 Page not Found</h1>");
+  res.send("<h1>404 Page not Found</h1>");
 });
 
 // DB connection
@@ -41,7 +42,7 @@ try {
 		}
 	);
 } catch (error) {
-	console.log("Error Occured", error);
+  console.log("Error Occured", error);
 }
 
 app.listen(process.env.PORT, () => {
